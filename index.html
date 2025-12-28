@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skeptical Engineering</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -32,6 +34,19 @@
       color: #a0a090;
       font-family: "IBM Plex Mono", "Consolas", monospace;
       font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      margin-bottom: 2rem;
+    }
+
+    .sidebar .logo {
+      width: 64px;
+      height: auto;
+      margin-bottom: 1rem;
+      opacity: 0.9;
     }
 
     .sidebar h1 {
@@ -46,14 +61,29 @@
     .sidebar .tagline {
       font-size: 0.75rem;
       color: #686860;
-      margin-bottom: 2.5rem;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+    }
+
+    .sidebar .nav-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar .nav-section-title {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #606058;
+      margin-bottom: 0.5rem;
     }
 
     .sidebar nav a {
       display: block;
       color: #808078;
       text-decoration: none;
-      padding: 0.3rem 0;
+      padding: 0.25rem 0;
       transition: color 0.15s;
     }
 
@@ -70,20 +100,43 @@
       color: #80a080;
     }
 
+    .content-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background-image:
+        linear-gradient(rgba(200, 200, 190, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200, 200, 190, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
     main {
       flex: 1;
       padding: 3rem 4rem;
       max-width: 720px;
     }
 
-    .project {
+    .category {
       margin-bottom: 3rem;
-      padding-bottom: 2.5rem;
+    }
+
+    .category-title {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888880;
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
       border-bottom: 1px solid #dcdcd4;
     }
 
+    .project {
+      margin-bottom: 2.5rem;
+    }
+
     .project:last-child {
-      border-bottom: none;
+      margin-bottom: 0;
     }
 
     .project h2 {
@@ -177,6 +230,14 @@
       margin: 0.2rem 0 0 0;
     }
 
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid #e4e4dc;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 0.75rem;
+      color: #888880;
+    }
+
     @media (max-width: 800px) {
       .layout {
         flex-direction: column;
@@ -187,18 +248,38 @@
         padding: 1.5rem;
       }
 
+      .sidebar-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .sidebar .logo {
+        width: 36px;
+        margin-bottom: 0;
+      }
+
       .sidebar nav {
         display: flex;
         flex-wrap: wrap;
         gap: 0 1rem;
       }
 
-      .sidebar .tagline {
+      .sidebar .nav-section {
         margin-bottom: 1rem;
+      }
+
+      .sidebar .tagline {
+        margin-bottom: 0;
       }
 
       main {
         padding: 2rem 1.5rem;
+      }
+
+      footer {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -206,85 +287,140 @@
 <body>
   <div class="layout">
     <aside class="sidebar">
-      <h1>Skeptical Engineering</h1>
-      <p class="tagline">open source projects</p>
-      <nav>
-        <a href="#promptresponse">PromptResponse</a>
-        <a href="#klareco">Klareco</a>
-        <a href="#harbor">Harbor</a>
-        <a href="#eddi">EDDI</a>
-      </nav>
+      <div class="sidebar-header">
+        <img src="greatenoch_logo_light.png" alt="" class="logo">
+        <h1>Skeptical Engineering</h1>
+        <p class="tagline">The interesting part is making it boring.</p>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Productivity</div>
+          <nav>
+            <a href="#promptresponse">PromptResponse</a>
+            <a href="#pdfe">PDFE</a>
+          </nav>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Security & Privacy</div>
+          <nav>
+            <a href="#harbor">Harbor</a>
+            <a href="#eddi">EDDI</a>
+          </nav>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Research</div>
+          <nav>
+            <a href="#klareco">Klareco</a>
+          </nav>
+        </div>
+      </div>
     </aside>
 
-    <main>
-      <article id="promptresponse" class="project">
-        <h2><a href="https://github.com/marctjones/promptresponse">PromptResponse</a></h2>
-        <p>
-          A cross-platform form application that abandons the page metaphor. Instead of wrestling with PDF quirks, Word's fragile form fields, or Excel protection schemes, PromptResponse uses a portable text-based format (.apr) built on JSON.
-        </p>
-        <ul>
-          <li>Pure JSON format for easy database import, webhook submission, and programmatic processing</li>
-          <li>Responsive forms that adapt to any screen without fixed layouts</li>
-          <li>WCAG 2.1 Level AA accessibility by design</li>
-          <li>Safe to open untrusted files (no code execution)</li>
-          <li>Built with .NET 8 and AvaloniaUI for cross-platform support</li>
-        </ul>
-        <span class="status active">Active Development</span>
-      </article>
+    <div class="content-wrapper">
+      <main>
+        <section class="category">
+          <h2 class="category-title">Productivity</h2>
 
-      <article id="klareco" class="project">
-        <h2><a href="https://github.com/marctjones/klareco">Klareco</a></h2>
-        <p>
-          An experimental conversational AI for Esperanto that prioritizes deterministic, explainable processing. The core idea: leverage Esperanto's regular grammar to replace neural components with programmatic logic, using learned parameters only for semantic reasoning.
-        </p>
-        <ul>
-          <li>Esperanto's 16 grammar rules encoded directly in the parser, not learned</li>
-          <li>Pipeline: text → deterministic parser → AST → compositional embeddings → deterministic output</li>
-          <li>~333K learned parameters handle semantics; grammar is fully programmatic</li>
-          <li>Thesis: explicit grammar via ASTs lets a small core match larger models while remaining explainable</li>
-        </ul>
-        <span class="status experimental">Experimental</span>
-      </article>
+          <article id="promptresponse" class="project">
+            <h3><a href="https://github.com/marctjones/promptresponse">PromptResponse</a></h3>
+            <p>
+              A cross-platform form application that abandons the page metaphor. Instead of wrestling with PDF quirks, Word's fragile form fields, or Excel protection schemes, PromptResponse uses a portable text-based format (.apr) built on JSON.
+            </p>
+            <ul>
+              <li>Pure JSON format for easy database import, webhook submission, and programmatic processing</li>
+              <li>Responsive forms that adapt to any screen without fixed layouts</li>
+              <li>WCAG 2.1 Level AA accessibility by design</li>
+              <li>Safe to open untrusted files (no code execution)</li>
+              <li>Built with .NET 8 and AvaloniaUI for cross-platform support</li>
+            </ul>
+            <span class="status active">Active Development</span>
+          </article>
 
-      <article id="harbor" class="project">
-        <h2><a href="https://github.com/marctjones/harbor">Harbor</a></h2>
-        <p>
-          A desktop application framework as an Electron alternative. Harbor embeds the Servo browser engine to render web UIs, communicating with local backends exclusively over Unix Domain Sockets (Named Pipes on Windows).
-        </p>
-        <ul>
-          <li>Zero network exposure—no TCP ports to scan or attack</li>
-          <li>Use any HTTP backend: Flask, FastAPI, Node.js, gunicorn, nginx</li>
-          <li>Managed backend lifecycle: start, health check, restart on crash, cleanup on exit</li>
-          <li>Lower memory usage and smaller bundles than Electron</li>
-        </ul>
-        <span class="status experimental">Experimental</span>
-        <div class="related">
-          <div class="related-title">Related Projects</div>
-          <div class="related-item">
-            <a href="https://github.com/marctjones/rigging">Rigging</a> — Scaffold generator for Harbor applications. Creates project structure, configuration, and build tooling.
-          </div>
-          <div class="related-item">
-            <a href="https://github.com/marctjones/compass">Compass</a> — Developer tools for Harbor. Live reload, request inspection, and debugging utilities.
-          </div>
-          <div class="related-item">
-            <a href="https://github.com/marctjones/corsair">Corsair</a> — Packaging and distribution toolchain. Handles bundling, code signing, and platform-specific installers.
-          </div>
-        </div>
-      </article>
+          <article id="pdfe" class="project">
+            <h3><a href="https://github.com/marctjones/pdfe">PDFE</a></h3>
+            <p>
+              A cross-platform PDF editor with true content-level redaction. Most PDF redaction tools just draw black boxes over sensitive text—the data is still there, extractable by anyone who knows to look. PDFE actually removes the content from the PDF structure.
+            </p>
+            <ul>
+              <li>Glyph-level text removal from PDF content streams, not visual masking</li>
+              <li>Verified with external tools (pdftotext, PdfPig)—redacted text cannot be extracted</li>
+              <li>CLI tool (pdfer) for batch redaction, search, and verification</li>
+              <li>OCR support for scanned documents via Tesseract</li>
+              <li>Built with .NET 8 and AvaloniaUI for cross-platform support</li>
+            </ul>
+            <span class="status active">Active Development</span>
+          </article>
+        </section>
 
-      <article id="eddi" class="project">
-        <h2><a href="https://github.com/marctjones/eddi">EDDI</a></h2>
-        <p>
-          A secure application launcher that exposes web applications exclusively as Tor hidden services. All inter-process communication uses Unix domain sockets, achieving zero TCP port exposure.
-        </p>
-        <ul>
-          <li>Applications accessible only via .onion addresses</li>
-          <li>No local network ports to discover or attack</li>
-          <li>Built-in Tor integration and hidden service management</li>
-        </ul>
-        <span class="status experimental">Experimental</span>
-      </article>
-    </main>
+        <section class="category">
+          <h2 class="category-title">Security & Privacy</h2>
+
+          <article id="harbor" class="project">
+            <h3><a href="https://github.com/marctjones/harbor">Harbor</a></h3>
+            <p>
+              A desktop application framework as an Electron alternative. Harbor embeds the Servo browser engine to render web UIs, communicating with local backends exclusively over Unix Domain Sockets (Named Pipes on Windows).
+            </p>
+            <ul>
+              <li>Zero network exposure—no TCP ports to scan or attack</li>
+              <li>Use any HTTP backend: Flask, FastAPI, Node.js, gunicorn, nginx</li>
+              <li>Managed backend lifecycle: start, health check, restart on crash, cleanup on exit</li>
+              <li>Lower memory usage and smaller bundles than Electron</li>
+            </ul>
+            <span class="status experimental">Experimental</span>
+            <div class="related">
+              <div class="related-title">Related Projects</div>
+              <div class="related-item">
+                <a href="https://github.com/marctjones/rigging">Rigging</a> — Scaffold generator for Harbor applications. Creates project structure, configuration, and build tooling.
+              </div>
+              <div class="related-item">
+                <a href="https://github.com/marctjones/compass">Compass</a> — Developer tools for Harbor. Live reload, request inspection, and debugging utilities.
+              </div>
+              <div class="related-item">
+                <a href="https://github.com/marctjones/corsair">Corsair</a> — Packaging and distribution toolchain. Handles bundling, code signing, and platform-specific installers.
+              </div>
+            </div>
+          </article>
+
+          <article id="eddi" class="project">
+            <h3><a href="https://github.com/marctjones/eddi">EDDI</a></h3>
+            <p>
+              A secure application launcher that exposes web applications exclusively as Tor hidden services. All inter-process communication uses Unix domain sockets, achieving zero TCP port exposure.
+            </p>
+            <ul>
+              <li>Applications accessible only via .onion addresses</li>
+              <li>No local network ports to discover or attack</li>
+              <li>Built-in Tor integration and hidden service management</li>
+            </ul>
+            <span class="status experimental">Experimental</span>
+          </article>
+        </section>
+
+        <section class="category">
+          <h2 class="category-title">Research</h2>
+
+          <article id="klareco" class="project">
+            <h3><a href="https://github.com/marctjones/klareco">Klareco</a></h3>
+            <p>
+              An experimental conversational AI for Esperanto that prioritizes deterministic, explainable processing. The core idea: leverage Esperanto's regular grammar to replace neural components with programmatic logic, using learned parameters only for semantic reasoning.
+            </p>
+            <ul>
+              <li>Esperanto's 16 grammar rules encoded directly in the parser, not learned</li>
+              <li>Pipeline: text → deterministic parser → AST → compositional embeddings → deterministic output</li>
+              <li>~333K learned parameters handle semantics; grammar is fully programmatic</li>
+              <li>Thesis: explicit grammar via ASTs lets a small core match larger models while remaining explainable</li>
+            </ul>
+            <span class="status experimental">Experimental</span>
+          </article>
+        </section>
+      </main>
+
+      <footer>
+        Boring is a feature.
+      </footer>
+    </div>
   </div>
 </body>
 </html>
