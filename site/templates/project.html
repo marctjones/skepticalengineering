@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} - {{ config.title }}{% endblock %}
+
+{% block content %}
+<article class="project-page">
+  <header class="project-page-header">
+    {% if page.extra.logo %}
+    <img src="{{ get_url(path=page.extra.logo) }}" alt="" class="project-logo-large">
+    {% endif %}
+    <div class="project-page-title">
+      <h1>{{ page.title }}</h1>
+      <span class="status {{ page.extra.status | lower | replace(from=' ', to='-') }}">{{ page.extra.status }}</span>
+    </div>
+  </header>
+
+  <p class="project-description">{{ page.description }}</p>
+
+  <div class="project-links">
+    {% if page.extra.github %}
+    <a href="{{ page.extra.github }}" class="project-link">
+      <span class="link-icon">&#128279;</span> GitHub Repository
+    </a>
+    {% endif %}
+    {% if page.extra.docs %}
+    <a href="{{ page.extra.docs }}" class="project-link">
+      <span class="link-icon">&#128214;</span> Documentation
+    </a>
+    {% endif %}
+  </div>
+
+  <div class="project-content">
+    {{ page.content | safe }}
+  </div>
+
+  {% if page.extra.related %}
+  <div class="related">
+    <div class="related-title">Related Projects</div>
+    {% for item in page.extra.related %}
+    <div class="related-item">
+      <a href="{{ item.url }}">{{ item.name }}</a>
+      <p>{{ item.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</article>
+{% endblock %}

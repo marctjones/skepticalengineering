@@ -1,0 +1,16 @@
+# Skeptical Engineering - Zola Configuration
+
+base_url = "https://skepticalengineering.com"
+title = "Skeptical Engineering"
+description = "The interesting part is making it boring."
+compile_sass = true
+minify_html = true
+generate_feeds = false
+
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+
+[extra]
+tagline = "The interesting part is making it boring."
+footer_text = "Boring is a feature."

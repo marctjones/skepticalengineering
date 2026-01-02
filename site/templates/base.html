@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ config.title }}{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ get_url(path='images/favicon.ico') }}">
+  <link rel="icon" type="image/png" href="{{ get_url(path='images/favicon.png') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ get_url(path='style.css') }}">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <a href="{{ get_url(path='/') }}">
+          <img src="{{ get_url(path='images/greatenoch_logo_light.png') }}" alt="" class="logo">
+        </a>
+        <h1><a href="{{ get_url(path='/') }}">Skeptical Engineering</a></h1>
+        <p class="tagline">{{ config.extra.tagline }}</p>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-section-title">Productivity</div>
+          <nav>
+            <a href="{{ get_url(path='projects/promptresponse') }}">PromptResponse</a>
+            <a href="{{ get_url(path='projects/pdfe') }}">PDFE</a>
+          </nav>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Security & Privacy</div>
+          <nav>
+            <a href="{{ get_url(path='projects/harbor') }}">Harbor</a>
+            <a href="{{ get_url(path='projects/eddi') }}">EDDI</a>
+          </nav>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-section-title">Research</div>
+          <nav>
+            <a href="{{ get_url(path='projects/klareco') }}">Klareco</a>
+          </nav>
+        </div>
+      </div>
+    </aside>
+
+    <div class="content-wrapper">
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+
+      <footer>
+        {{ config.extra.footer_text }}
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

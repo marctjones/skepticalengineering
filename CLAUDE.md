@@ -12,22 +12,53 @@ Portfolio site for skepticalengineering.com showcasing selected open source proj
 
 **To deploy changes:**
 ```bash
+cd site && ~/.local/bin/zola build && cd ..
 git add . && git commit -m "description" && git push
-npx wrangler pages deploy . --project-name=skepticalengineering
+npx wrangler pages deploy site/public --project-name=skepticalengineering
 ```
 
 Note: Auto-deploy from GitHub is not configured. Deploys are manual via wrangler.
 
+## Tech Stack
+
+- **Zola** — Static site generator (Rust)
+- **Sass** — Styling
+- **Cloudflare Pages** — Hosting
+
 ## Site Structure
 
-Single-page static site with 4 featured projects:
+Zola-based static site in `site/` directory with individual project pages:
 
-| Project | Status |
-|---------|--------|
-| PromptResponse | Active Development |
-| Klareco | Experimental |
-| Harbor + related (Rigging, Compass, Corsair) | Experimental |
-| EDDI | Experimental |
+```
+site/
+├── config.toml
+├── content/
+│   ├── _index.md              # Homepage
+│   └── projects/
+│       ├── _index.md
+│       ├── promptresponse.md
+│       ├── pdfe.md
+│       ├── harbor.md
+│       ├── eddi.md
+│       └── klareco.md
+├── sass/style.scss
+├── static/images/
+└── templates/
+    ├── base.html
+    ├── index.html
+    ├── project.html
+    └── section.html
+```
+
+## Projects
+
+| Project | Status | URL |
+|---------|--------|-----|
+| PromptResponse | Active Development | /projects/promptresponse/ |
+| PDFE | Active Development | /projects/pdfe/ |
+| Harbor + related (Rigging, Compass, Corsair) | Experimental | /projects/harbor/ |
+| EDDI | Experimental | /projects/eddi/ |
+| Klareco | Experimental | /projects/klareco/ |
 
 ## Brand Identity
 
@@ -96,12 +127,13 @@ These sites should feel unrelated at a glance:
 | Sidebar | None | Dark terminal panel |
 | Tone | Personal, professional | Technical, philosophical |
 
-## Site Structure
+## Visual Structure
 
 - Dark terminal sidebar with monospace navigation (IBM Plex Mono)
 - Serif body text for readability (IBM Plex Serif)
 - Muted olive-gray palette, no flashy colors
-- Each project: one paragraph + bulleted feature list
+- Homepage: project summaries with links to detail pages
+- Project pages: full description, features, and GitHub links
 - Status badges with borders (green for active, yellow for experimental)
 
 ## Philosophy / Taglines

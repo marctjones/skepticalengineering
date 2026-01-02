@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} - {{ config.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+{{ section.content | safe }}
+
+{% for page in section.pages %}
+<article class="project">
+  <div class="project-header">
+    {% if page.extra.logo %}
+    <img src="{{ get_url(path=page.extra.logo) }}" alt="" class="project-logo">
+    {% endif %}
+    <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+  </div>
+  <p>{{ page.description }}</p>
+  <span class="status {{ page.extra.status | lower | replace(from=' ', to='-') }}">{{ page.extra.status }}</span>
+</article>
+{% endfor %}
+{% endblock %}

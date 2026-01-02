@@ -1,0 +1,20 @@
+# Symlinks to other project repos
+compass
+corsair
+eddi
+harbor
+klareco
+pdfe
+promptresponse
+rigging
+
+# Zola build output
+site/public/
+
+# Python
+*.pyc
+__pycache__/
+
+# Generated files
+generate_illustrations.py
+generate_logos.py

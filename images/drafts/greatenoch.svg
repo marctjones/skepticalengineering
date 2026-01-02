@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Hammer Handle: Sturdy, utilitarian -->
+  <path d="M29 28 L29 60 A 1 1 0 0 0 30 61 L34 61 A 1 1 0 0 0 35 60 L35 28 Z" fill="#e0e0d8"/>
+  
+  <!-- Hammer Head: The Great Enoch (Sledgehammer block shape) -->
+  <!-- Using a path for slightly chamfered/industrial look instead of a simple rect -->
+  <path d="M10 8 H54 A 2 2 0 0 1 56 10 V32 A 2 2 0 0 1 54 34 H10 A 2 2 0 0 1 8 32 V10 A 2 2 0 0 1 10 8 Z" fill="#e0e0d8"/>
+  
+  <!-- Terminal Prompt >_ (Cutout/Negative Space) -->
+  <g stroke="#1c1c1c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ">" character -->
+    <path d="M22 16 L28 21 L22 26" />
+    <!-- "_" character -->
+    <path d="M34 26 L42 26" />
+  </g>
+</svg>

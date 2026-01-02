@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set projects_section = get_section(path="projects/_index.md") %}
+
+<section class="category">
+  <h2 class="category-title">Productivity</h2>
+  {% for page in projects_section.pages %}
+    {% if page.extra.category == "productivity" %}
+    <article class="project">
+      <div class="project-header">
+        {% if page.extra.logo %}
+        <img src="{{ get_url(path=page.extra.logo) }}" alt="" class="project-logo">
+        {% endif %}
+        <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+      </div>
+      <p>{{ page.description }}</p>
+      <span class="status {{ page.extra.status | lower | replace(from=' ', to='-') }}">{{ page.extra.status }}</span>
+    </article>
+    {% endif %}
+  {% endfor %}
+</section>
+
+<section class="category">
+  <h2 class="category-title">Security & Privacy</h2>
+  {% for page in projects_section.pages %}
+    {% if page.extra.category == "security" %}
+    <article class="project">
+      <div class="project-header">
+        {% if page.extra.logo %}
+        <img src="{{ get_url(path=page.extra.logo) }}" alt="" class="project-logo">
+        {% endif %}
+        <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+      </div>
+      <p>{{ page.description }}</p>
+      {% if page.extra.related %}
+      <div class="related">
+        <div class="related-title">Related Projects</div>
+        {% for item in page.extra.related %}
+        <div class="related-item">
+          <a href="{{ item.url }}">{{ item.name }}</a> — {{ item.description }}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <span class="status {{ page.extra.status | lower | replace(from=' ', to='-') }}">{{ page.extra.status }}</span>
+    </article>
+    {% endif %}
+  {% endfor %}
+</section>
+
+<section class="category">
+  <h2 class="category-title">Research</h2>
+  {% for page in projects_section.pages %}
+    {% if page.extra.category == "research" %}
+    <article class="project">
+      <div class="project-header">
+        {% if page.extra.logo %}
+        <img src="{{ get_url(path=page.extra.logo) }}" alt="" class="project-logo">
+        {% endif %}
+        <h3><a href="{{ page.permalink }}">{{ page.title }}</a></h3>
+      </div>
+      <p>{{ page.description }}</p>
+      <span class="status {{ page.extra.status | lower | replace(from=' ', to='-') }}">{{ page.extra.status }}</span>
+    </article>
+    {% endif %}
+  {% endfor %}
+</section>
+{% endblock %}
